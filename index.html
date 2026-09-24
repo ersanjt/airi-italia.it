@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AIRI | Sito in fase di sviluppo</title>
+  <meta name="description" content="AIRI, Associazione Imprenditori Iraniani Residenti in Italia. Sito temporaneo in fase di sviluppo.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23072540'/%3E%3Cpath d='M12 44c10-21 30-27 40-24' fill='none' stroke='%2300874f' stroke-width='6' stroke-linecap='round'/%3E%3Cpath d='M12 48c12-14 31-17 42-10' fill='none' stroke='%23d71920' stroke-width='6' stroke-linecap='round'/%3E%3Ctext x='32' y='38' text-anchor='middle' font-family='Arial, sans-serif' font-size='18' font-weight='700' fill='white'%3EA%3C/text%3E%3C/svg%3E">
+  <style>
+    :root {
+      --navy: #072540;
+      --navy-soft: #123456;
+      --green: #00874f;
+      --red: #d71920;
+      --ink: #14253a;
+      --muted: #607089;
+      --line: #dbe4ee;
+      --paper: #ffffff;
+      --soft: #f4f8fb;
+      --shadow: 0 24px 70px rgba(7, 37, 64, 0.14);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(135deg, rgba(0, 135, 79, 0.08), transparent 28%),
+        linear-gradient(315deg, rgba(215, 25, 32, 0.08), transparent 30%),
+        #eef4f8;
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--green);
+    }
+
+    .page {
+      min-height: 100vh;
+      padding: clamp(22px, 4vw, 56px);
+    }
+
+    .site {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+    }
+
+    .masthead {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(7, 37, 64, 0.12);
+      border-radius: 8px;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+    }
+
+    .flag-bar {
+      display: grid;
+      grid-template-columns: 1.1fr 0.35fr 1.1fr 2.4fr;
+      height: 9px;
+    }
+
+    .flag-bar span:nth-child(1) { background: var(--green); }
+    .flag-bar span:nth-child(2) { background: #fff; }
+    .flag-bar span:nth-child(3) { background: var(--red); }
+    .flag-bar span:nth-child(4) { background: var(--navy); }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.35fr 0.9fr;
+      gap: clamp(24px, 4vw, 44px);
+      padding: clamp(26px, 5vw, 58px);
+      align-items: center;
+    }
+
+    .brand-lockup {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    .logo-card {
+      width: min(235px, 48vw);
+      padding: 10px 14px;
+      border: 1px solid rgba(7, 37, 64, 0.12);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .logo-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      width: fit-content;
+      padding: 8px 12px;
+      border: 1px solid rgba(0, 135, 79, 0.22);
+      border-radius: 999px;
+      color: var(--green);
+      background: rgba(0, 135, 79, 0.08);
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .status::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 5px rgba(0, 135, 79, 0.12);
+    }
+
+    h1 {
+      max-width: 760px;
+      margin: 18px 0 14px;
+      color: var(--navy);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.15rem, 5vw, 4.35rem);
+      line-height: 1.02;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 680px;
+      margin: 0;
+      color: #33475e;
+      font-size: clamp(1.03rem, 2vw, 1.24rem);
+    }
+
+    .motto {
+      margin: 28px 0 0;
+      padding-left: 18px;
+      border-left: 5px solid var(--red);
+      color: var(--navy);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.18rem, 2.5vw, 1.7rem);
+      font-style: italic;
+      line-height: 1.35;
+    }
+
+    .contact-panel {
+      align-self: stretch;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 385px;
+      padding: 26px;
+      border-radius: 8px;
+      color: #fff;
+      background:
+        linear-gradient(160deg, rgba(7, 37, 64, 0.96), rgba(18, 52, 86, 0.92)),
+        var(--navy);
+    }
+
+    .person small {
+      display: block;
+      color: rgba(255, 255, 255, 0.74);
+      font-size: 0.93rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .person strong {
+      display: block;
+      margin-top: 8px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.55rem, 3vw, 2.25rem);
+      line-height: 1.12;
+    }
+
+    .role {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 13px;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1.03rem;
+    }
+
+    .role::before,
+    .role::after {
+      content: "";
+      width: 42px;
+      height: 3px;
+      border-radius: 999px;
+    }
+
+    .role::before { background: var(--green); }
+    .role::after { background: var(--red); }
+
+    .contact-list {
+      display: grid;
+      gap: 13px;
+      margin: 28px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .contact-list li {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 12px;
+      align-items: start;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .contact-copy {
+      min-width: 0;
+    }
+
+    .contact-copy small {
+      display: block;
+      margin-bottom: 2px;
+      color: rgba(255, 255, 255, 0.62);
+      font-size: 0.78rem;
+      line-height: 1.35;
+      text-transform: uppercase;
+    }
+
+    .contact-copy a {
+      overflow-wrap: anywhere;
+      font-weight: 600;
+    }
+
+    .email-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .email-list a {
+      display: grid;
+      gap: 1px;
+    }
+
+    .email-list span {
+      color: rgba(255, 255, 255, 0.62);
+      font-size: 0.78rem;
+      line-height: 1.3;
+      text-transform: uppercase;
+    }
+
+    .icon {
+      display: inline-grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 50%;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .icon svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .digital-note {
+      margin-top: 28px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.18);
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 0.94rem;
+    }
+
+    .content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .language-card,
+    .focus-card {
+      border: 1px solid rgba(7, 37, 64, 0.12);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 18px 44px rgba(7, 37, 64, 0.08);
+    }
+
+    .language-card {
+      padding: clamp(22px, 4vw, 32px);
+    }
+
+    .language-card .label {
+      display: inline-block;
+      margin-bottom: 10px;
+      color: var(--red);
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      color: var(--navy);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.45rem, 3vw, 2rem);
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+
+    .language-card p {
+      margin: 0;
+      color: #405168;
+    }
+
+    .organization {
+      margin-top: 18px;
+      color: var(--navy);
+      font-weight: 700;
+    }
+
+    .focus {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .focus-card {
+      min-height: 160px;
+      padding: 20px;
+    }
+
+    .focus-card .mark {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      margin-bottom: 16px;
+      border-radius: 8px;
+      color: #fff;
+      background: var(--navy);
+    }
+
+    .focus-card:nth-child(2) .mark { background: var(--green); }
+    .focus-card:nth-child(3) .mark { background: var(--red); }
+    .focus-card:nth-child(4) .mark { background: var(--navy-soft); }
+
+    .focus-card svg {
+      width: 22px;
+      height: 22px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .focus-card h3 {
+      margin: 0 0 6px;
+      color: var(--navy);
+      font-size: 1.02rem;
+      line-height: 1.25;
+    }
+
+    .focus-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.94rem;
+      line-height: 1.45;
+    }
+
+    .closing {
+      margin-top: 18px;
+      overflow: hidden;
+      border-radius: 8px;
+      color: #fff;
+      background: var(--navy);
+      box-shadow: 0 18px 44px rgba(7, 37, 64, 0.12);
+    }
+
+    .closing-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 22px clamp(22px, 4vw, 34px);
+    }
+
+    .closing strong {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.18rem, 2vw, 1.55rem);
+      line-height: 1.25;
+    }
+
+    .closing span {
+      color: rgba(255, 255, 255, 0.68);
+      font-size: 0.92rem;
+      text-align: right;
+    }
+
+    .wave {
+      display: grid;
+      grid-template-columns: 4fr 0.5fr 4fr;
+      height: 11px;
+    }
+
+    .wave span:nth-child(1) { background: var(--green); }
+    .wave span:nth-child(2) { background: #fff; }
+    .wave span:nth-child(3) { background: var(--red); }
+
+    @media (max-width: 900px) {
+      .hero,
+      .content {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-panel {
+        min-height: auto;
+      }
+
+      .focus {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 560px) {
+      .page {
+        padding: 12px;
+      }
+
+      .hero {
+        padding: 22px;
+      }
+
+      .brand-lockup {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .logo-card {
+        width: 100%;
+      }
+
+      .focus {
+        grid-template-columns: 1fr;
+      }
+
+      .closing-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .closing span {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="site" aria-label="AIRI temporary website">
+      <div class="masthead">
+        <div class="flag-bar" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+        <div class="hero">
+          <div>
+            <div class="brand-lockup">
+              <div class="logo-card">
+                <img src="assets/airi-logo.jpg" alt="AIRI logo">
+              </div>
+              <div class="status">Sito in fase di sviluppo</div>
+            </div>
+
+            <h1>Bridging People, Business and Opportunities</h1>
+            <p class="lead">
+              AIRI brings together Iranian entrepreneurs resident in Italy around business network,
+              economic cooperation, trade relations and cultural exchange.
+            </p>
+            <p class="motto">Italy–Iran, A Stronger Tomorrow</p>
+          </div>
+
+          <aside class="contact-panel" aria-label="Contact information">
+            <div>
+              <div class="person">
+                <small>Presidente / President</small>
+                <strong>SAeid Mohammad Jan</strong>
+              </div>
+              <div class="role">AIRI</div>
+            </div>
+
+            <ul class="contact-list">
+              <li>
+                <span class="icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10Z"/></svg>
+                </span>
+                <div class="contact-copy">
+                  <small>Sito ufficiale / Official website</small>
+                  <a href="https://www.airi-italia.it">www.airi-italia.it</a>
+                </div>
+              </li>
+              <li>
+                <span class="icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.77.62 2.61a2 2 0 0 1-.45 2.11L8 9.72a16 16 0 0 0 6.28 6.28l1.28-1.28a2 2 0 0 1 2.11-.45c.84.29 1.71.5 2.61.62A2 2 0 0 1 22 16.92Z"/></svg>
+                </span>
+                <div class="contact-copy">
+                  <small>Telefono / Phone</small>
+                  <a href="tel:+393335312772">+39 333 531 2772</a>
+                </div>
+              </li>
+              <li>
+                <span class="icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/><path d="m22 6-10 7L2 6"/></svg>
+                </span>
+                <div class="email-list">
+                  <a href="mailto:info@airi-italia.it"><span>Informazioni / Information</span>info@airi-italia.it</a>
+                  <a href="mailto:presidente@airi-italia.it"><span>Presidente / President</span>presidente@airi-italia.it</a>
+                  <a href="mailto:segreteria@airi-italia.it"><span>Segreteria / Secretariat</span>segreteria@airi-italia.it</a>
+                  <a href="mailto:eventi@airi-italia.it"><span>Eventi / Events</span>eventi@airi-italia.it</a>
+                </div>
+              </li>
+              <li>
+                <span class="icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                </span>
+                <div class="contact-copy">
+                  <small>Sede / Address</small>
+                  <span>Via Sparavalle n. 2 – 42123 Reggio Emilia (RE) – Italia</span>
+                </div>
+              </li>
+            </ul>
+
+            <p class="digital-note">
+              Dominio e contatti ufficiali AIRI · Official AIRI domain and contacts
+            </p>
+          </aside>
+        </div>
+      </div>
+
+      <div class="content">
+        <article class="language-card" lang="it">
+          <span class="label">Italiano</span>
+          <h2>Sito in fase di sviluppo</h2>
+          <p>
+            Stiamo preparando questo spazio online. Le informazioni complete sull'associazione,
+            i servizi, gli eventi e le opportunità saranno pubblicate prossimamente.
+          </p>
+          <p class="organization">
+            Associazione Imprenditori Iraniani Residenti in Italia – AIRI
+          </p>
+        </article>
+
+        <article class="language-card" lang="en">
+          <span class="label">English</span>
+          <h2>Website under development</h2>
+          <p>
+            This online presence is being prepared. Complete information about the association,
+            services, events and opportunities will be published soon.
+          </p>
+          <p class="organization">
+            Association of Iranian Entrepreneurs Resident in Italy – AIRI
+          </p>
+        </article>
+      </div>
+
+      <section class="focus" aria-label="AIRI focus areas">
+        <article class="focus-card">
+          <div class="mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Business network</h3>
+          <p>Rete d'impresa e relazioni professionali.</p>
+        </article>
+
+        <article class="focus-card">
+          <div class="mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+          </div>
+          <h3>Economic cooperation</h3>
+          <p>Cooperazione economica tra comunità e mercati.</p>
+        </article>
+
+        <article class="focus-card">
+          <div class="mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="m16 3 5 5-9.5 9.5-5-5L16 3Z"/><path d="m6.5 12.5-4 4L7 21l4-4"/><path d="m17 8 1.5 1.5"/></svg>
+          </div>
+          <h3>Trade relations</h3>
+          <p>Relazioni commerciali e nuove opportunità.</p>
+        </article>
+
+        <article class="focus-card">
+          <div class="mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 0 20"/><path d="M12 2a15.3 15.3 0 0 0 0 20"/></svg>
+          </div>
+          <h3>Cultural exchange</h3>
+          <p>Scambio culturale tra Italia e Iran.</p>
+        </article>
+      </section>
+
+      <footer class="closing">
+        <div class="wave" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="closing-inner">
+          <strong>Italy–Iran, A Stronger Tomorrow</strong>
+          <span>Reti · Imprese · Persone · Futuro</span>
+        </div>
+      </footer>
+    </section>
+  </main>
+</body>
+</html>
